@@ -44,7 +44,7 @@ function Get-PemFromPFX {
                 $PEMcrt="$dirname\$filename.crt"
                 $PEMkey="$dirname\$filename.key"
 
-                #OpenSSL convert commands
+                #OpenSSL convert commands. -passout is mandatory to have at least 4 chars
                 & "$opensslpath\openssl.exe" pkcs12 -in $inputPFX -nocerts -out $PEMkey -passin pass:$password -passout pass:t0r_m1asXxeq2=022YQ 2> $null
                 & "$opensslpath\openssl.exe" pkcs12 -in $inputPFX -clcerts -nokeys -out $PEMcrt -passin pass:$password 2> $null
                 & "$opensslpath\openssl.exe" rsa -in $PEMkey -out $PEMkey -passin pass:t0r_m1asXxeq2=022YQ 2> $null
